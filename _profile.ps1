@@ -1,6 +1,6 @@
 # https://ohmyposh.dev/docs/windows
 
-oh-my-posh --init --shell pwsh --config .\_.omp.json | Invoke-Expression
+oh-my-posh init pwsh --config ([Environment]::GetFolderPath("MyDocuments") + "\PowerShell\_.omp.json") | Invoke-Expression
 
 # Install-Module -Name Terminal-Icons
 
