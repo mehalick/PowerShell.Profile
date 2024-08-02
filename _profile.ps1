@@ -20,3 +20,23 @@ function New-DirectoryAndSetLocation {
  
     Set-Location -Path $Path
 }
+
+function Get-MarkdownFiles {
+    Get-ChildItem -Path .\ -Recurse -Filter *.md -Name | Where-Object { $_ -notmatch 'node_modules' }
+}
+
+function New-MWinit {
+    [CmdletBinding()]
+    [Alias("mw")]
+    PARAM ()
+    mwinit -k "$HOME\.ssh\id_ecdsa.pub"
+}
+
+function Restart-AudioServices {
+    [CmdletBinding()]
+    [Alias("ras")]
+    PARAM ()
+    net start audiosrv /y
+    net stop AudioEndpointBuilder /y
+    net start audiosrv
+}
