@@ -14,7 +14,7 @@
             "cache_duration": "none"
           },
           "leading_diamond": "\ue0b6",
-          "template": " ❯ {{ .UserName | lower }} ",
+          "template": " ❯ ",
           "foreground": "#ffffff",
           "background": "#3A86FF",
           "type": "session",
