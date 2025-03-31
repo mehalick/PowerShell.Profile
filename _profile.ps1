@@ -36,7 +36,14 @@ function Restart-AudioServices {
     [CmdletBinding()]
     [Alias("ras")]
     PARAM ()
-    net start audiosrv /y
+    net stop audiosrv /y
     net stop AudioEndpointBuilder /y
     net start audiosrv
+}
+
+function Set-IsengardIdentity {
+    [CmdletBinding()]
+    [Alias("gq")]
+    PARAM ()
+   isengardcli assume {AccountName} --role dev
 }
