@@ -1,12 +1,31 @@
 # https://ohmyposh.dev/docs/windows
 
+Clear-Host
+
+$fontName = "meslo" # Replace with the font name you want to check
+
+$installedFonts = (New-Object System.Drawing.Text.InstalledFontCollection).Families
+
+$fontExists = $installedFonts | Where-Object { $_.Name -eq $fontName }
+
+if ($fontExists) {
+    Write-Host "Font '$fontName' is installed."
+} else {
+    Write-Host "Font '$fontName' is NOT installed."
+    # oh-my-posh font install meslo
+}
+
 oh-my-posh init pwsh --config "$HOME\Documents\PowerShell\_.omp.json" | Invoke-Expression
 
-# Install-Module -Name Terminal-Icons
+if (-not (Get-Module -ListAvailable -Name Terminal-Icons)) {
+    Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process
+    Install-Module -Name Terminal-Icons -Scope CurrentUser -Force
+}
 
-Import-Module -Name Terminal-Icons
-
-Clear-Host
+if (-not (Get-Module -Name Terminal-Icons)) {
+    Unblock-File -Path "$env:USERPROFILE\Documents\PowerShell\Modules\Terminal-Icons\0.10.0\Terminal-Icons.psm1"
+    Import-Module -Name Terminal-Icons
+}
 
 # Functions
 function New-DirectoryAndSetLocation {
