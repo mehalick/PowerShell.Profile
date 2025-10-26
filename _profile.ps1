@@ -2,7 +2,7 @@
 
 Clear-Host
 
-$fontName = "meslo" # Replace with the font name you want to check
+$fontName = "MesloLGMDZ Nerd Font Mono" # Replace with the font name you want to check
 
 $installedFonts = (New-Object System.Drawing.Text.InstalledFontCollection).Families
 
