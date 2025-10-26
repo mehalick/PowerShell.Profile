@@ -15,7 +15,9 @@ if ($fontExists) {
     # oh-my-posh font install meslo
 }
 
-oh-my-posh init pwsh --config "$HOME\Documents\PowerShell\_.omp.json" | Invoke-Expression
+$path = "$([Environment]::GetFolderPath("MyDocuments"))\PowerShell"
+
+oh-my-posh init pwsh --config "$path\_.omp.json" | Invoke-Expression
 
 if (-not (Get-Module -ListAvailable -Name Terminal-Icons)) {
     Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process
@@ -23,7 +25,7 @@ if (-not (Get-Module -ListAvailable -Name Terminal-Icons)) {
 }
 
 if (-not (Get-Module -Name Terminal-Icons)) {
-    Unblock-File -Path "$env:USERPROFILE\Documents\PowerShell\Modules\Terminal-Icons\0.10.0\Terminal-Icons.psm1"
+    Unblock-File -Path "$env:USERPROFILE\Documents\Modules\Terminal-Icons\0.10.0\Terminal-Icons.psm1"
     Import-Module -Name Terminal-Icons
 }
 
