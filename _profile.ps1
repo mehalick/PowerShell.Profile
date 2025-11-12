@@ -3,14 +3,10 @@
 Clear-Host
 
 $fontName = "MesloLGMDZ Nerd Font Mono" # Replace with the font name you want to check
-
 $installedFonts = (New-Object System.Drawing.Text.InstalledFontCollection).Families
-
 $fontExists = $installedFonts | Where-Object { $_.Name -eq $fontName }
 
-if ($fontExists) {
-    Write-Host "Font '$fontName' is installed."
-} else {
+if (-not $fontExists) {
     Write-Host "Font '$fontName' is NOT installed."
     # oh-my-posh font install meslo
 }
@@ -19,11 +15,11 @@ oh-my-posh init pwsh --config "$HOME\Documents\PowerShell\_.omp.json" | Invoke-E
 
 if (-not (Get-Module -ListAvailable -Name Terminal-Icons)) {
     Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process
-    Install-Module -Name Terminal-Icons -Scope CurrentUser -Force
+    Install-Module -Name Terminal-Icons -Repository PSGallery -Scope CurrentUser -Force
 }
 
 if (-not (Get-Module -Name Terminal-Icons)) {
-    Unblock-File -Path "$env:USERPROFILE\Documents\PowerShell\Modules\Terminal-Icons\0.10.0\Terminal-Icons.psm1"
+    Unblock-File -Path "$env:USERPROFILE\Documents\PowerShell\Modules\Terminal-Icons\0.11.0\Terminal-Icons.psm1"
     Import-Module -Name Terminal-Icons
 }
 
