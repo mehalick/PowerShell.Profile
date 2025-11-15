@@ -7,7 +7,7 @@ $installedFonts = (New-Object System.Drawing.Text.InstalledFontCollection).Famil
 $fontExists = $installedFonts | Where-Object { $_.Name -eq $fontName }
 
 if (-not $fontExists) {
-    Write-Host "Font '$fontName' is NOT installed."
+    Write-Host "Font '$fontName' is NOT installed. Please install it from https://ohmyposh.dev/docs/installation/fonts"
     # oh-my-posh font install meslo
 }
 
