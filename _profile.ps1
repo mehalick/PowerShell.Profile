@@ -9,10 +9,9 @@ $installedFonts = (New-Object System.Drawing.Text.InstalledFontCollection).Famil
 $fontExists = $installedFonts | Where-Object { $_.Name -eq $fontName }
 
 if ($fontExists) {
-    Write-Host "Font '$fontName' is installed."
+    Write-Host "Font '$fontName' is installed"
 } else {
-    Write-Host "Font '$fontName' is NOT installed."
-    # oh-my-posh font install meslo
+    Write-Warning "Font '$fontName' is NOT installed"
 }
 
 $path = "$([Environment]::GetFolderPath("MyDocuments"))\PowerShell"
@@ -21,11 +20,11 @@ oh-my-posh init pwsh --config "$path\_.omp.json" | Invoke-Expression
 
 if (-not (Get-Module -ListAvailable -Name Terminal-Icons)) {
     Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process
-    Install-Module -Name Terminal-Icons -Scope CurrentUser -Force
+    Install-Module -Name Terminal-Icons -Repository PSGallery
 }
 
 if (-not (Get-Module -Name Terminal-Icons)) {
-    Unblock-File -Path "$env:USERPROFILE\Documents\Modules\Terminal-Icons\0.10.0\Terminal-Icons.psm1"
+    Unblock-File -Path "$path\Modules\Terminal-Icons\0.11.0\Terminal-Icons.psm1"
     Import-Module -Name Terminal-Icons
 }
 
